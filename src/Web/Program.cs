@@ -39,6 +39,10 @@ namespace Microsoft.eShopWeb.Web
             host.Run();
         }
 
+        public void Unused() {
+            
+        }
+
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
