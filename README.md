@@ -17,6 +17,8 @@ The goal for this sample is to demonstrate some of the principles and patterns d
 > #### The `master` branch is currently running ASP.NET Core 2.2.
 > #### Older versions are tagged.
 
+updated
+
 ## Topics (eBook TOC)
 
 - Introduction
