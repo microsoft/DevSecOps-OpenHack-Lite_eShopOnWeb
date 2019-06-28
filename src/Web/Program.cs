@@ -48,7 +48,9 @@ namespace Microsoft.eShopWeb.Web
             int sum = 0;
             for(int i = 0; i < 10; i++)
             {
-                sum++;
+                if (i != 0 ) {
+                    sum++;
+                }
             }
         }
 
