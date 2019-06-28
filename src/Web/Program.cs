@@ -43,6 +43,15 @@ namespace Microsoft.eShopWeb.Web
             
         }
 
+        public void Execute()
+        {
+            int sum = 0;
+            for(int i = 0; i < 10; i++)
+            {
+                sum++;
+            }
+        }
+
         public static string ChangePassword = "Password@1";
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
