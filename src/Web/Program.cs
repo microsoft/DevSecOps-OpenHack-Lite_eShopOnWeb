@@ -43,6 +43,8 @@ namespace Microsoft.eShopWeb.Web
             
         }
 
+        public static string ChangePassword = "Password@1";
+
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
