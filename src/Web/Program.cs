@@ -85,6 +85,10 @@ namespace Microsoft.eShopWeb.Web
 
         }
 
+        public static string SocalSecurityNumber = "123-45-6789";
+
+        public static string CreditCardNumber = "4916784487431276"; // VISA
+
         public static string ChangePassword = "Password@1";
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
