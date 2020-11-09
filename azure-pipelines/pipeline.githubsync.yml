@@ -1,0 +1,13 @@
+trigger:
+- none
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+- group: GitHubSync
+
+steps:
+- task: gitsync@1
+  inputs:
+    GitRepoUrl: 'https://$(GitHubPAT)@github.com/$(GitHubOrg)/$(GitHubRepo).git'
