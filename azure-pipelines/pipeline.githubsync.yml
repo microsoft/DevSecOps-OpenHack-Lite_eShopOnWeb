@@ -8,9 +8,13 @@ variables:
 - group: GitHubSync
 
 steps:
+- checkout: self
+
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: |     
-      git remote add --mirror=fetch dsttmp "https://$(GitHubPAT)@github.com/$(GitHubOrg)/$(GitHubRepo)"
-      git push dsttmp --progress --prune +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+    script: | 
+      git remote add --mirror=fetch github "https://$(GitHubPAT)@github.com/$(GitHubOrg)/$(GitHubRepo)"
+      git push github "refs/remotes/origin/master:refs/heads/master" --force
+      git push github "refs/remotes/origin/ch1_Fix:refs/heads/ch1_Fix" --force
+      git push github --tags --prune --force
