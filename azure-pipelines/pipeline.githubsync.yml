@@ -8,6 +8,9 @@ variables:
 - group: GitHubSync
 
 steps:
-- task: gitsync@1
+- task: Bash@3
   inputs:
-    GitRepoUrl: 'https://$(GitHubPAT)@github.com/$(GitHubOrg)/$(GitHubRepo).git'
+    targetType: 'inline'
+    script: |     
+      git remote add --mirror=fetch dsttmp "https://$(GitHubPAT)@github.com/$(GitHubOrg)/$(GitHubRepo)"
+      git push dsttmp --progress --prune +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
