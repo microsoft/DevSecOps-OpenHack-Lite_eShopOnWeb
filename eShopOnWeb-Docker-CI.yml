@@ -6,13 +6,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-16.04'
-
-resources:
-  repositories:
-  - repository: eShopOnWeb
-    type: git
-    name: eShopOnWeb
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: CmdLine@2
