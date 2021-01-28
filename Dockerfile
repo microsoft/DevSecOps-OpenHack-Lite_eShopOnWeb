@@ -8,11 +8,27 @@
 # RUN COMMAND
 #  docker run --name eshopweb --rm -it -p 8080:8080 web
 FROM microsoft/dotnet:2.2-sdk AS build
+
+# Args
+ARG FEED_URL
+ARG FEED_ACCESSTOKEN
+
+# Set environment variables
+ENV NUGET_CREDENTIALPROVIDER_SESSIONTOKENCACHE_ENABLED true
+ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS="{\"endpointCredentials\": [{\"endpoint\":\"${FEED_URL}\", \"username\":\"docker\", \"password\":\"${FEED_ACCESSTOKEN}\"}]}"
+
 WORKDIR /app
+
+# Setup artifacts-credprovider
+# RUN curl -L https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/master/helpers/installcredprovider.sh | sh
+COPY artifacts-credprovider/Microsoft.NuGet.CredentialProvider.tar.gz /app/Microsoft.NuGet.CredentialProvider.tar.gz
+RUN mkdir "$HOME/.nuget/" \
+    && tar xzf Microsoft.NuGet.CredentialProvider.tar.gz -C "$HOME/.nuget/" "plugins/netcore"
+
 COPY src /app
 
 WORKDIR /app/Web
-RUN dotnet restore \
+RUN dotnet restore -s "${FEED_URL}" \
     && dotnet publish -c Release -o out
 
 FROM microsoft/dotnet:2.2-aspnetcore-runtime AS runtime
